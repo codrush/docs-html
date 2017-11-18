@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Metaverse Documantation | 元界的HD账户模型及加密 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"元界的HD账户模型及加密","path":"developers/base-layer/account-model.html"},"data":{"navigation":{"logo":{"text":"Metaverse Documentaion","type":"link","path":"index.html"},"main":[{"text":"概览","type":"link","path":"index.html"},{"text":"开始学习","type":"link","path":"get-started.html"},{"text":"全节点钱包","type":"link","path":"full-node-wallet/index.html","children":[{"text":"链上存款(锁仓)","type":"link","path":"full-node-wallet/onchain-deposit.html"},{"text":"发行代币","type":"link","path":"full-node-wallet/issue-token.html"},{"text":"转移代币","type":"link","path":"full-node-wallet/transfer-token.html"},{"text":"主网参数","type":"link","path":"full-node-wallet/mainnet-parameters.html"},{"text":"在命令行环境使用","type":"link","path":"full-node-wallet/command-line.html"}]},{"text":"白皮书概要","type":"label","children":[{"text":"元界白皮书","type":"link","path":"whitepaper/metaverse.html"},{"text":"元界数字身份白皮书","type":"link","path":"whitepaper/digital-identity.html"}]},{"text":"开发使用与配置","type":"label"},{"text":"介绍","type":"link","path":"usage-and-configuration/introduction.html"},{"text":"编译","type":"link","path":"usage-and-configuration/build/index.html","children":[{"text":"Linux","type":"link","path":"usage-and-configuration/build/linux.html"},{"text":"Windows","type":"link","path":"usage-and-configuration/build/windows.html"},{"text":"MacOSX","type":"link","path":"usage-and-configuration/build/macosx.html"}]},{"text":"配置选项","type":"link","path":"usage-and-configuration/startup-options.html"},{"text":"测试网络","type":"link","path":"usage-and-configuration/testnet.html"},{"text":"命令行参考","type":"link","path":"usage-and-configuration/command-line-reference.html"},{"text":"搭建私有链","type":"link","path":"usage-and-configuration/private-chain.html"},{"text":"开发者文档","type":"label"},{"text":"数字资产账本","type":"link","path":"developers/digital-asset/index.html","children":[{"text":"链上存款(锁仓)","type":"link","path":"developers/digital-asset/onchain-deposit.html"},{"text":"自定义资产","type":"link","path":"developers/digital-asset/issue-token.html"}]},{"text":"数字身份账本","type":"link","path":"developers/digital-identity/index.html"},{"text":"底层技术","type":"link","path":"developers/base-layer/index.html","children":[{"text":"P2P网络","type":"link","path":"developers/base-layer/p2p-network.html"},{"text":"高性能数据库","type":"link","path":"developers/base-layer/database.html"},{"text":"内嵌式HTTPServer","type":"link","path":"developers/base-layer/httpserver.html"},{"text":"共识机制与挖矿","type":"link","path":"developers/base-layer/consensus-and-mining.html"},{"text":"HD账户与加密模块","type":"link","path":"developers/base-layer/account-model.html"},{"text":"UTXO扩展与Script扩展","type":"link","path":"developers/base-layer/utxo-and-script.html"}]}]}},"config":{"timezone":null,"root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"api_explorer":true,"permalinks":true},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Metaverse Documentaion</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1 id="元界的HD账户模型及加密"><a href="#元界的HD账户模型及加密" class="headerlink" title="元界的HD账户模型及加密"></a>元界的HD账户模型及加密</h1><p>元界钱包使用账户对钱包中的资产进行管理。账户设计应用到了HD钱包、数据库、单向散列函数等技术。</p>
+<h1 id="1-HD钱包"><a href="#1-HD钱包" class="headerlink" title="1 HD钱包"></a>1 HD钱包</h1><h2 id="1-1-HD钱包原理"><a href="#1-1-HD钱包原理" class="headerlink" title="1.1 HD钱包原理"></a>1.1 HD钱包原理</h2><p>HD钱包又称分层确定性钱包，它是基于比特币BIP0032标准的。分层确定性钱包包含从数据结构所生成的钥匙。这种母钥匙可以生成子钥匙序列。所生成的子钥匙又可以衍生出孙钥匙，基于些种规则，以此可以无穷类推。可以生成一个含有无穷多个子孙钥匙的树结构。HD钱包使用的便利性还表现在“助记词”，元界HD钱包便是基于此规则生成，用户只需要记住“助记词”和地址个数就可恢复出该账户所持有的资产的。“助记词”到“根私钥”运算原理如下图所示：</p>
+<p><img src="/assets/import.png" alt=""></p>
+<p>HD钱包的“根种子”为128到256位的随机数。它使用CKD(child key derivation)方程从母密钥衍生出子密钥。子密钥衍生方程是基于单向散列函数。这个函数结合了：一个母公共钥匙、一个叫做链码（256位）的种子、一个索引号（32位）。这三个参数相结合并散列可以生成子密钥。”母公共钥匙+链码+索引号“合并在一起，并且用HMAC-SHA512散列之后可以产生512位的散列值。并将其拆分为两部分。右半部分的256位产生出可以给子链当链码。左半部分256位散列以及索引友被加载在母私钥上来衍生子私钥。如下图所示：</p>
+<p><img src="/assets/import1.png" alt=""></p>
+<p>这样改变索引可以让我们延长母密钥假造序列中的其他子密钥。每个母密钥可以产生2的32次方个子密钥。</p>
+<h2 id="1-2-HD账户实现"><a href="#1-2-HD账户实现" class="headerlink" title="1.2 HD账户实现"></a>1.2 HD账户实现</h2><p>元界中新账户对应一个新生成的分层确定性钱包，新账户建立成功后会返回24个英文助记词，通过账户助记词可以恢复出用户的所有普通地址（后续元界还引入了多重签名地址）上的资产信息。一个账户可以连续生成多个地址，目前地址的最大个数为4294967296（2的32次方）个。每个元界HD账户生成的过程为：</p>
+<p><img src="/assets/HDaccount.png" alt=""></p>
+<p>1.用户通过RPC发送getnewaccout命令，并带有用户名和密码给mvsd</p>
+<p>2.mvsd通过由“密码学上安全的随机数生成器”生成“种子随机数”。</p>
+<p>3.mvsd根据上述步骤中所得到的“种子随机数”生成“助记词”。生成“助记词”的目的是为了便于人们存储和输入</p>
+<p>4.mvsd由“助记词”进行解码恢复出步骤3中所产生的随机数“种子”。</p>
+<p>5.mvsd根据“种子”计算“HD私钥”，该“HD私钥”为该账户的“根私钥”，以后所有的地址生成都是基于该“根私钥”和当前账户地址“索引值”生成的。“索引值”默认为0。账户生成时，会应用后续步骤生成第一个默认地址。</p>
+<h2 id="1-3-账户地址"><a href="#1-3-账户地址" class="headerlink" title="1.3 账户地址"></a>1.3 账户地址</h2><p>HD钱包的所有地址都是经由“助记词”和地址索引生成的。新地址产生流程为：</p>
+<p>1.由“助记词”解码出随机数“种子”。</p>
+<p>2.根据“种子”计算“主HD私钥”，并修改当前账户最新地址的“索引值”。计算出新的地址的“HD私钥”，该“HD私钥”是基于“主HD私钥”计算出的第“索引值”个“子HD私钥”</p>
+<p>3.将“子HD私钥”换算成“EC私钥”</p>
+<p>4.根据“EC私钥”通过单向散列函数计算出其“EC公钥”</p>
+<p>5.根据“EC公钥”将其进行编码处理，计算出“元界地址”</p>
+<h2 id="1-4-多重签名地址"><a href="#1-4-多重签名地址" class="headerlink" title="1.4 多重签名地址"></a>1.4 多重签名地址</h2><p>在元界中，普通地址是以M开头的，而所有以数字3开头的地址是P2SH地址。多重签名作为合约脚本，其所对应的多重签名地址都是以3开头的脚本地址。它可以指定交易中受益人作为哈希的脚本，而不是公钥的所有者。该功能是依据BIP0016。资金被发送到以3</p>
+<p>开头的地址时，不仅仅需要一个公钥哈希值，同进也需要一个私钥签名作为所有都证明。在创建地址的时候，这些要求会被定义在脚本中，所有对地址的输入都会被这些要求阻隔。多重签名地址脚本是一种最常见的P2SH。在多重签名中需要多个签名来证明来证明所有权，此后才能消费资金。它需要从总共N个密钥中需要M个签名，被称为M-N多重签名，其中M是等于或小于N。M是需要的最小匹配的签名，N是提供公钥的数量。</p>
+<p>若要创建一个多重签名合约，所有参与人都要给其他人一个地址公钥。然后，任何得到的所参与人的公钥的人可以创建P2SH脚本。如2-3签名脚本，OP_2  [A’s pubkey] [B’s pubkey] [C’s pubkey] OP_3 OP_CHECKMULTISIGOP_2和OP_3代表实际数字2和3。OP_2指定需要2个签名，OP_3指定需要提供3个未哈希过的公钥。</p>
+<h1 id="2-HD账户设计"><a href="#2-HD账户设计" class="headerlink" title="2 HD账户设计"></a>2 HD账户设计</h1><p>在元界钱包中的账户设计中主要涉及account、acccount_multisig两个类。其中account类是对HD账户的抽象，account_multisig类是对多重签名的抽象。</p>
+<p> account类和account_multisig类为组合关系，一个account实例可以拥有0个或多个account_multisig实例。类图如下所示。</p>
+<p><img src="/assets/account_multisig.png" alt=""></p>
+<p>account类主要通过以下字段记录账户相关关键信息。</p>
+<p> name —-账户的名字，对应于钱包页面的用户名，该字段是以字符串的形式持久存储于钱包的本地账户数据库表中的。</p>
+<p> mnemonic —-账户注册成功后，为使得用户存储、记录其账户在的信息所生成的助记词。该字段是以加密字符串的形式持久存储在钱包的本地账户数据库表中的。该字段是用户最重要的信息，若用户忘记旧的用户名或者密码，用户完全可以从备份在U盘或者纸张上的助记词重新导入新账户达到恢复资产的目的。</p>
+<p> passwd —-账户的密码，对应用钱包页面的用户密码，针对密码，元界钱包在用户注册时针对用户密码应用单向散列函数进行了哈希计算，而不是存储的密码明文，这样做的好处增加了密码的安全性，即使获取到了钱包的本地账户数据表，也无法从哈希值反向计算出用户密码。</p>
+<p> hd_index —-账户地址索引，对应于钱包从主助记词导入账户页面中的地址个数。主要用户记录账户地址个数的。其值加1即为该账户目前已建立地址个数，该字段以数值的形式存储于钱包本地账户数据库表中。</p>
+<p> mulitisg_vec —-账户多重签名信息，账户可以从自己的地址列表选择地址，并获取其公钥，然后与其他账户地址的公钥共同生成多重签名合约。该字段被序列化后存储于钱包本地账户数据库表中。</p>
+<p> account_multisig类主要通过以下字段记录账户多重签名相关关键信息。</p>
+<p> m_ —-记录该项多重签名最少签名个数</p>
+<p> n_ —-记录该项多重签名脚本中公钥的最大个数</p>
+<p> pubkey_ —-记录该项多重签名所使用的该账户地址的公钥</p>
+<p> cosigner_pubkeys_ —-用于存储该项目多重签名中所有其他参与方提供的公钥</p>
+<p> address_ —-记录该多重签名合约所对应的地址</p>
+<p>元界的地址是通过account_address类进行抽象的，它与account类之间是关联关系，每个账户可以拥有多个地址，它们主要是基于根私钥，依据索引值产生新的地址。</p>
+<p><img src="/assets/account_address.png" alt=""></p>
+<p>类主要应用如下字段存储地址关键信息。</p>
+<p>name —-用于存储该地址所属账户的用户名</p>
+<p> prv_key —-该字段用于存储地址所对应的私钥，由于获取到地址的私钥后就可以花费或转移该地址上的所有资产，出于安全性考虑，没有在数据库的地址表中存储私钥的明文，而是存储是加密后的私钥信息。</p>
+<p> hd_index —-用于存储该地址的索引值，即从根私钥产生该地址所应用的索引值。</p>
+<p> address —-用于存储地址字符串的实际值。</p>
+<p>账户除具有熵（ETP）之外，还可以拥有各种在元界中发行的数据资产。asset_detail类是元界中数据资产的抽象，它与account类是通过account_address类作为中介关联起来的，可以将这种关系理解为间接关联。</p>
+<p><img src="/assets/account-address-detail.png" alt=""></p>
+<p>asset_detail类主要应用如下字段存储地址关键信息。</p>
+<p> symbol —-用于存储该资产的名字，该资产在元界是唯一的，若已有用户发布过同名的资产则该资产则不能以现有的名字进行发布。</p>
+<p> maximum_supply —-用于存储该资产发行的最大份数。该值是在资产建立时就指定的。</p>
+<p> decimal_number —-用于指定单份资产可以被切分的小数位数。</p>
+<p> address —-用于指定最初发布资产的发起地址。</p>
+<p> description —-用于指定该资产的描述信息。</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>

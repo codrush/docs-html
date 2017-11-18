@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Metaverse Documantation | 元界的共识算法与挖矿 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"元界的共识算法与挖矿","path":"developers/base-layer/consensus-and-mining.html"},"data":{"navigation":{"logo":{"text":"Metaverse Documentaion","type":"link","path":"index.html"},"main":[{"text":"概览","type":"link","path":"index.html"},{"text":"开始学习","type":"link","path":"get-started.html"},{"text":"全节点钱包","type":"link","path":"full-node-wallet/index.html","children":[{"text":"链上存款(锁仓)","type":"link","path":"full-node-wallet/onchain-deposit.html"},{"text":"发行代币","type":"link","path":"full-node-wallet/issue-token.html"},{"text":"转移代币","type":"link","path":"full-node-wallet/transfer-token.html"},{"text":"主网参数","type":"link","path":"full-node-wallet/mainnet-parameters.html"},{"text":"在命令行环境使用","type":"link","path":"full-node-wallet/command-line.html"}]},{"text":"白皮书概要","type":"label","children":[{"text":"元界白皮书","type":"link","path":"whitepaper/metaverse.html"},{"text":"元界数字身份白皮书","type":"link","path":"whitepaper/digital-identity.html"}]},{"text":"开发使用与配置","type":"label"},{"text":"介绍","type":"link","path":"usage-and-configuration/introduction.html"},{"text":"编译","type":"link","path":"usage-and-configuration/build/index.html","children":[{"text":"Linux","type":"link","path":"usage-and-configuration/build/linux.html"},{"text":"Windows","type":"link","path":"usage-and-configuration/build/windows.html"},{"text":"MacOSX","type":"link","path":"usage-and-configuration/build/macosx.html"}]},{"text":"配置选项","type":"link","path":"usage-and-configuration/startup-options.html"},{"text":"测试网络","type":"link","path":"usage-and-configuration/testnet.html"},{"text":"命令行参考","type":"link","path":"usage-and-configuration/command-line-reference.html"},{"text":"搭建私有链","type":"link","path":"usage-and-configuration/private-chain.html"},{"text":"开发者文档","type":"label"},{"text":"数字资产账本","type":"link","path":"developers/digital-asset/index.html","children":[{"text":"链上存款(锁仓)","type":"link","path":"developers/digital-asset/onchain-deposit.html"},{"text":"自定义资产","type":"link","path":"developers/digital-asset/issue-token.html"}]},{"text":"数字身份账本","type":"link","path":"developers/digital-identity/index.html"},{"text":"底层技术","type":"link","path":"developers/base-layer/index.html","children":[{"text":"P2P网络","type":"link","path":"developers/base-layer/p2p-network.html"},{"text":"高性能数据库","type":"link","path":"developers/base-layer/database.html"},{"text":"内嵌式HTTPServer","type":"link","path":"developers/base-layer/httpserver.html"},{"text":"共识机制与挖矿","type":"link","path":"developers/base-layer/consensus-and-mining.html"},{"text":"HD账户与加密模块","type":"link","path":"developers/base-layer/account-model.html"},{"text":"UTXO扩展与Script扩展","type":"link","path":"developers/base-layer/utxo-and-script.html"}]}]}},"config":{"timezone":null,"root":"/","time_format":"HH:mm:ss","theme":"doc","theme_config":{"swagger_ui":{"api_explorer":true,"permalinks":true},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Metaverse Documentaion</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <h1 id="元界的共识算法与挖矿"><a href="#元界的共识算法与挖矿" class="headerlink" title="元界的共识算法与挖矿"></a>元界的共识算法与挖矿</h1><h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1 介绍"></a>1 介绍</h1><p>元界是一个公有区块链，在第一阶段用工作量证明机制(POW)达成网络共识。POW机制会选取最大工作量的链作为有效链。元界网络去中心化共识由所有节点进行以下独立的几个运算相互作用产生：</p>
+<ul>
+<li>每个独立全节点依据规则对每个交易验证。</li>
+<li>挖矿节点把这些交易独立打包进新块，通过POW工作量算法计算锻造出新块。</li>
+<li>每个节点对新区块进行校验，并依据最大工作量选择新区块组装链。</li>
+</ul>
+<h1 id="2-挖矿算法"><a href="#2-挖矿算法" class="headerlink" title="2 挖矿算法"></a>2 挖矿算法</h1><p>元界采用了Ethash作为POW算法。Ethash是一种改良版本Dagger-Hashimoto算法。在元界区块中存有难度值，Ethash算法会通过穷举法找到一个随机数，使得结果小于难度阈值。这个随机值作为工作量计算结果保存在区块中。在Ethash中由于输出结果是平均分布的，所以穷举法是最好的方法的，寻找这样的随机数的平均时间完全取决于难度阈值的调整。Ethash算法是一个对I/O位宽要求高，内存需求大的算法,这样可以抵御矿机ASIC化。</p>
+<h2 id="2-1-Ethash介绍"><a href="#2-1-Ethash介绍" class="headerlink" title="2.1  Ethash介绍"></a>2.1  Ethash介绍</h2><p>Ethash算法流程如下：</p>
+<ol>
+<li>根据区块高度计算出一个seed，每30000个块调整一次seed。</li>
+<li>从seed生成出一个16MB的伪随机数据缓存,一般给非全节点钱包使用。</li>
+<li>从伪随机数据缓存，生成一个DAG数据集,这个文件随着块高线性增长,每30000个块调整一次。一般全节点或者旷工节点使用DAG数据集。</li>
+<li>挖矿计算就是从DAG数据集中抓取数据并且做哈希运算。但是仅根据16MB的伪随机数据缓存就可以验证挖矿结果。</li>
+</ol>
+<p>数据集生成与挖矿计算示例Python代码参考<a href="https://github.com/ethereum/wiki/wiki/Ethash" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Ethash</a></p>
+<h2 id="2-2-难度调整"><a href="#2-2-难度调整" class="headerlink" title="2.2 难度调整"></a>2.2 难度调整</h2><p>难度是限制合格解的空间,达到控制平均出块需要计算的次数,从而达到控制出块时间。ETP难度以单个区块进行调整，可以非常迅速的适应算力的变化。每次调整都是在上一个区块难度基础上进行调整，使得区块难度不会出现跳变，从而出现算力“暴击”的问题。计算一个区块难度时需要以下几个参数：上一块难度 _parent.bits， 上一块时间戳 _parent.timestamp,当前块时间戳_bi.timestamp。如果出块间隔大于设定时间，当前块难度difficulty=  _parent.bits - (_parent.bits/1024)；反之则difficulty=  _parent.bits + (_parent.bits/1024)。</p>
+<h1 id="3-挖矿奖励"><a href="#3-挖矿奖励" class="headerlink" title="3 挖矿奖励"></a>3 挖矿奖励</h1><p>在元界网络早期,节点数目总量不足，网络系统的安全存在隐患。元界网络采用类经济奖励方式给挖矿节点分配ETP。矿工锻造出来一个区块奖励如下：</p>
+<ol>
+<li><p>Coinbase奖励，Coinbase奖励从初始开始是3 ETP，块高每增长50万块，Coinbase奖励的ETP数目会减少5%。</p>
+</li>
+<li><p>区块包含的交易手续费和资产发行手续费。</p>
+</li>
+</ol>
+<p>未来随着元界项目平稳运作，块高到达一定数值，POW的挖矿奖励会逐渐减少，元界将切换到改良的DPOS共识算法上面。</p>
+<h1 id="4-挖矿JSON-RPC-API"><a href="#4-挖矿JSON-RPC-API" class="headerlink" title="4  挖矿JSON-RPC-API"></a>4  挖矿JSON-RPC-API</h1><p>外部挖矿程序与元界主节点钱包通过rpc请求进行通信。元界钱包提供了setmininginfo,getwork和submitwork等rpc api.详细使用方法可以参考API文档。</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
